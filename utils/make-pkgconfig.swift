@@ -18,10 +18,10 @@ func run(_ path: String, args: [String] = []) -> String? {
     print("Running \(path) \(args.joined(separator: " "))...")
     let pipe = Pipe()
     let process = Process()
-    process.launchPath = path
+    process.executableURL = URL(fileURLWithPath: path)
     process.arguments = args
     process.standardOutput = pipe
-    process.launch()
+    try? process.run()
     process.waitUntilExit()
 
     let data = pipe.fileHandleForReading.readDataToEndOfFile()

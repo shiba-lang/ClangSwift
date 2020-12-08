@@ -178,7 +178,8 @@ public class TranslationUnit {
   ///   - options: Options for how to handle the parsed file
   /// - throws: `ClangError` if the translation unit could not be created
   ///           successfully.
-  public convenience init(clangSource: String,
+	@available(iOS 10.0, *)
+	public convenience init(clangSource: String,
                           language: Language,
                           index: Index = Index(),
                           commandLineArgs args: [String] = [],
