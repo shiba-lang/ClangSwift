@@ -77,7 +77,7 @@ func makeFile() throws {
                      .replacing(charactersIn: .newlines, with: "")
                      .replacingOccurrences(of: "svn", with: "")
   let components = versionStr.components(separatedBy: ".")
-                             .flatMap { Int($0) }
+                             .compactMap { Int($0) }
 
   guard components.count == 3 else {
     throw "Invalid version number \(versionStr)"
@@ -125,7 +125,7 @@ func makeFile() throws {
     "Version: \(versionStr)",
     "Libs: \(libFlags)",
     "Requires.private:",
-    "Cflags: \(cFlags)", 
+    "Cflags: \(cFlags)",
   ].joined(separator: "\n")
 
   print("Writing pkg-config file to \(cclangPath.path)...")
